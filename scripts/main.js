@@ -35,7 +35,11 @@ function processCriteria1(text) {
 }
 
 function processGuidelines1(text) {
-    return text;
+    const guidelinePattern = /^#### (.*?)([\s\S]*?)<!--END GUIDELINE-->/gm;
+    return text.replaceAll(guidelinePattern, function(match, title, content) {
+        content = processCriteria1(content.trim());
+        return `<div class="guideline"><h4>${title}</h4><ul class="criteria">${content}</ul></div>`;
+    });
 }
 
 
