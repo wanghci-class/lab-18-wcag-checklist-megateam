@@ -66,10 +66,28 @@ function processGuidelines3(text) {
 // FUNCTIONS FOR SECTION 4: Robust
 
 function processFormatting4(text) {
+    
+    //Bold
+    text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+    //Italic
+    text = text.replace(/_(.*?)_/g, '<em>$1</em>');
+
+    //Code
+    text = text.replace(/`(.*?)`/g, '<code>$1</code>');
+
+    //Links
+    text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
     return text;
 }
 
 function processChecklists4(text) {
+    let re = /^ {4}\* (.+)$/gm;
+
+    text = text.replace(re, '<li>$1</li>');
+
+    text = `<ul class="checklist">${text}</ul>`;
+
     return text;
 }
 
@@ -97,7 +115,7 @@ async function loadContent(elementId, fileUrl, functions) {
     element.innerHTML = text;
 }
 
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
     await loadContent("perceivable-contents", "./data/01_perceivable.md",
         [processFormatting1, processChecklists1, processCriteria1, processGuidelines1]);
     await loadContent("operable-contents", "./data/02_operable.md",
