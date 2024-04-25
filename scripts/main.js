@@ -9,7 +9,18 @@ function processChecklists1(text) {
 }
 
 function processCriteria1(text) {
-    return text;
+    re = /\* ([^\n]*)(.*?)<!--END CRITERION-->/gms;
+
+    let html = `<li>
+                    $1
+                    <ul class="checklist">
+                        $2
+                    </ul>
+                </li>`;
+
+    text = text.replaceAll(re, html); 
+    console.log(text);
+    return text
 }
 
 function processGuidelines1(text) {
