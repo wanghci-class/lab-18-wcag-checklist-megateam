@@ -62,6 +62,12 @@ function processFormatting4(text) {
 }
 
 function processChecklists4(text) {
+    let re = /^ {4}\* (.+)$/gm;
+
+    text = text.replace(re, '<li>$1</li>');
+
+    text = `<ul class="checklist">${text}</ul>`;
+
     return text;
 }
 
@@ -89,7 +95,7 @@ async function loadContent(elementId, fileUrl, functions) {
     element.innerHTML = text;
 }
 
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
     await loadContent("perceivable-contents", "./data/01_perceivable.md",
         [processFormatting1, processChecklists1, processCriteria1, processGuidelines1]);
     await loadContent("operable-contents", "./data/02_operable.md",
