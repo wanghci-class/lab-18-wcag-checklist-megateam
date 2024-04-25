@@ -24,6 +24,8 @@ function processFormatting2(text) {
 }
 
 function processChecklists2(text) {
+    let re = new RegExp("^    \\* (.*)\.$", "gm");
+    text = text.replaceAll(re, "<li>$1.</li>");
     return text;
 }
 
