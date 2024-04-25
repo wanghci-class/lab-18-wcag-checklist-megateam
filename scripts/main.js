@@ -20,6 +20,12 @@ function processGuidelines1(text) {
 // FUNCTIONS FOR SECTION 2: Operable
 
 function processFormatting2(text) {
+    let reBold = new RegExp("__([^_]+?)__", "g");
+    let reItalic = new RegExp("_([^_]+?)_", "g");
+    let reLink = new RegExp("[([^_]+?)](([^_]+?))", "g");
+    // text = text.replaceAll(reBold, "<strong>$1</strong>"); // Called on the String
+    text = text.replaceAll(reItalic, "<em>$1<em>")
+    // text= text.replaceAll(reLink, "<a href=\"$2\">$1<a>") 
     return text;
 }
 
