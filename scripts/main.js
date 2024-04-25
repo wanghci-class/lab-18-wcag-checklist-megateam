@@ -28,6 +28,16 @@ function processChecklists2(text) {
 }
 
 function processCriteria2(text) {
+    let liList = document.createElement("li");
+    let titleText = new RegExp("(?<! )\* (.+?(?=\())");
+    titleText = titleText.replace('* ', '');
+    titleText = titleText.replace('[', '');
+    titleText = titleText.replace(']', '');
+    liList.textContent = titleText;
+    console.log("Title: " + titleText);
+
+    let ulList = document.createElement("ul");
+
     return text;
 }
 
