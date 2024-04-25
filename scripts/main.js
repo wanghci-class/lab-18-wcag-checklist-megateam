@@ -13,6 +13,9 @@ function processFormatting1(text) {
 }
 
 function processChecklists1(text) {
+    re = /    \* ([^\n]*)/gms;
+    html = "<li>$1</li>";
+    text = text.replaceAll(re, html);
     return text;
 }
 
