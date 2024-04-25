@@ -43,6 +43,8 @@ function processFormatting3(text) {
 }
 
 function processChecklists3(text) {
+    let re = /    \* (.+)/g;
+    text = text.replaceAll(re, "<li>$1</li>");
     return text;
 }
 
