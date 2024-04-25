@@ -129,6 +129,10 @@ function processChecklists4(text) {
 }
 
 function processCriteria4(text) {
+  //let end = "<!--END CRITERION-->";
+  let re = /\* ([^\n]*)(.*?)<!--END CRITERION-->/gms;
+  let html = '<li>$1<ul class="checklist">$2</ul></li>';
+  text = text.replace(re, html);
   return text;
 }
 
