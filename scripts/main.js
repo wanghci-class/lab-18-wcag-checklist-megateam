@@ -72,7 +72,13 @@ function processCriteria2(text) {
 }
 
 function processGuidelines2(text) {
+<<<<<<< HEAD
+    let re = new RegExp("#### +?", "g");
+    text = text.replaceAll(re, "<div class=\"guideline\">\n<h4>$1</h4></div>");
+    return text;
+=======
   return text;
+>>>>>>> 1adbebbf7f96b22fd1d8d04db8ba3683511ffb58
 }
 
 
