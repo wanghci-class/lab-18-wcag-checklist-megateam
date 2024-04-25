@@ -58,6 +58,18 @@ function processGuidelines3(text) {
 // FUNCTIONS FOR SECTION 4: Robust
 
 function processFormatting4(text) {
+    
+    //Bold
+    text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+    //Italic
+    text = text.replace(/_(.*?)_/g, '<em>$1</em>');
+
+    //Code
+    text = text.replace(/`(.*?)`/g, '<code>$1</code>');
+
+    //Links
+    text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
     return text;
 }
 
