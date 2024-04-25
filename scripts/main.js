@@ -20,18 +20,34 @@ function processGuidelines1(text) {
 // FUNCTIONS FOR SECTION 2: Operable
 
 function processFormatting2(text) {
+    let re = new RegExp("_(.*)_", "gm");
+    text = text.replace(re, "<em>$1</em>");
+    re = new RegExp("__(.*)__", "gm");
+    text = text.replace(re, "<strong>$1</strong>");
+    re = new RegExp("`(.*)`", "gm");
+    text = text.replace(re, "<code>$1</code>");
+    re = new RegExp("\\[(.*)\\]", "gm");
+    text = text.replace(re, "<a href=\"$1\">$1</a>");
     return text;
 }
 
 function processChecklists2(text) {
+    let re = new RegExp("^ {4}\\* (.*)", "gm");
+    text = text.replace(re, "<li>$1</li>");
     return text;
 }
 
 function processCriteria2(text) {
+    let re = new RegExp("^\\* (.*\r?\n)((.*\r?\n)+?)    <!--END CRITERION-->", "gm");
+    text = text.replace(re, "<li>$1<ul class=\"checklist\">$2</ul></li>");
     return text;
 }
 
 function processGuidelines2(text) {
+    let re = new RegExp("#### (.*)\r?\n((?:.*\r?\n)+?)<!--END GUIDELINE-->", "gm");
+    // let re = new RegExp("####", "gm");
+    text = text.replace(re, "<div class=\"guideline\"><h4>$1</h4><ul class=\"criteria\">$2<ul></div>");
+    console.log(text);
     return text;
 }
 
