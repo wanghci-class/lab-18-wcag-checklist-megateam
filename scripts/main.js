@@ -1,6 +1,14 @@
 // FUNCTIONS FOR SECTION 1: Perceivable
 
 function processFormatting1(text) {
+    let re = new RegExp("__(.*?)__", "g");
+    text = text.replaceAll(re, "<strong>$1</strong>");
+    re = new RegExp("_(.*?)_", "g");
+    text = text.replaceAll(re, "<em>$1</em>");
+    re = new RegExp("`(.*?)`", "g");
+    text  = text.replaceAll(re, "<code>$1</code>");
+    re = new RegExp("\\[(.*?)\\]\\((.*?)\\)", "g");
+    text = text.replaceAll(re, "<a href=\"$2\">$1</a>")
     return text;
 }
 
