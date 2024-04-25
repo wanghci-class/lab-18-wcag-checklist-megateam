@@ -35,6 +35,14 @@ function processCriteria1(text) {
 }
 
 function processGuidelines1(text) {
+    let re = new RegExp("#### Guideline([^]+?)\n([^]+?)<!--END GUIDELINE-->", "g")
+    text = text.replaceAll(re, `<div class="guideline">
+    <h4>$1</h4>
+    <ul class="criteria">
+      $2
+    </ul>
+  </div>`);
+    return text;
     const guidelinePattern = /^#### (.*?)([\s\S]*?)<!--END GUIDELINE-->/gm;
     return text.replaceAll(guidelinePattern, function(match, title, content) {
         content = processCriteria1(content.trim());
