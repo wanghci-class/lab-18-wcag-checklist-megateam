@@ -138,7 +138,6 @@ function processCriteria4(text) {
 
 function processGuidelines4(text) {
     let re = /#### ([^_]+?)<!---END GUIDELINE--->/g;
-    return text;
   return text;
 }
 
