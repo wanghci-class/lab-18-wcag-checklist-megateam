@@ -54,6 +54,8 @@ function processCriteria2(text) {
 }
 
 function processGuidelines2(text) {
+    let re = new RegExp("#### +?", "g");
+    text = text.replaceAll(re, "<div class=\"guideline\">\n<h4>$1</h4></div>");
     return text;
 }
 
