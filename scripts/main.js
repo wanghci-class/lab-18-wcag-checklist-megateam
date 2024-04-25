@@ -1,11 +1,16 @@
 // FUNCTIONS FOR SECTION 1: Perceivable
 
 function processFormatting1(text) {
+    text = text.replaceAll(/__([^_]+?)__/g, '<strong>$1</strong>');
+    text = text.replaceAll(/_([^_]+?)_/g, '<em>$1</em>');
+    text = text.replaceAll(/`([^`]+?)`/g, '<code>$1</code>');
+    text = text.replaceAll(/\[([^\]]+?)\]\(([^)]+?)\)/g, '<a href="$2">$1</a>');
     return text;
 }
 
 function processChecklists1(text) {
-    return text;
+    const checklistPattern = / {4}\* (.+)/g;
+    return text.replaceAll(checklistPattern, '<li>$1</li>');
 }
 
 function processCriteria1(text) {
@@ -13,7 +18,11 @@ function processCriteria1(text) {
 }
 
 function processGuidelines1(text) {
-    return text;
+    const guidelinePattern = /^#### (.*?)([\s\S]*?)<!--END GUIDELINE-->/gm;
+    return text.replaceAll(guidelinePattern, function(match, title, content) {
+        content = processCriteria1(content.trim());
+        return `<div class="guideline"><h4>${title}</h4><ul class="criteria">${content}</ul></div>`;
+    });
 }
 
 
