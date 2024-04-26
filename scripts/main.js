@@ -137,7 +137,8 @@ function processCriteria4(text) {
 }
 
 function processGuidelines4(text) {
-    let re = /#### ([^_]+?)<!---END GUIDELINE--->/g;
+    let re = /#### ([^_]+?)<!---END GUIDELINE--->/gms;
+    text = text.replaceAll(re, "div class=\"guideline\"><h4>$1</><ul class=\"criteria\">$2</ul></div>")
   return text;
 }
 
